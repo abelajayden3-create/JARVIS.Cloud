@@ -68,11 +68,11 @@ def ai_chat(query, history):
     if COHERE_API_KEY:
         try:
             import cohere
-            resp = cohere.Client(api_key=COHERE_API_KEY).chat(
-                model="command-r-plus",
+            resp = cohere.ClientV2(api_key=COHERE_API_KEY).chat(
+                model="command-r-plus-08-2024",
                 messages=messages
             )
-            return resp.text.strip()
+            return resp.message.content[0].text.strip()
         except Exception as e:
             print(f"Cohere failed: {e}")
 
